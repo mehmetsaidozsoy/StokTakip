@@ -1,0 +1,51 @@
+﻿@using StokTakip.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLURUNLER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLoyout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <tr>
+                    <th>ÜRÜN ID</th>
+                    <th>ÜRÜN ADI</th>
+                    <th>MARKA</th>
+                    <th>ÜRÜN KATEGORİ</th>
+                    <th>FİYAT</th>
+                    <th>STOK</th>
+                    <th>SİL</th>
+                    <th>GÜNCELLE</th>
+                    <th>ALERT</th>
+
+                </tr>
+                <tbody>
+                    @foreach (var urun in Model)
+                    {
+                        <tr>
+                            <th>@urun.URUNID</th>
+                            <td>@urun.URUNAD</td>
+                            <td>@urun.MARKA</td>
+                            <td>@urun.TBLKATEGORILER.KATEGORIAD</td>
+                            <td>@urun.FİYAT</td>
+                            <td>@urun.STOK</td>
+
+                            <td><a href="/URUN/SIL/@urun.URUNID" class="btn btn-danger">SİL</a></td>
+                            <td><a href="/URUN/UrunGetir/@urun.URUNID" class="btn btn-success">GÜNCELLE</a></td>
+                            <td>@Html.ActionLink("SİL BUTONU", "SIL", new { id = urun.URUNID }, new { @class = "btn btn-warning" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+            <a href="/Urun/YeniUrunEkle/" class="btn btn-primary">YENİ ÜRÜN EKLE</a>
+
+        </div>
+    </div>
+</div>
+

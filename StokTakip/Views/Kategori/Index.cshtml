@@ -1,0 +1,35 @@
+﻿@model IEnumerable<StokTakip.Models.Entity.TBLKATEGORILER>
+@{
+    ViewBag.Title = "Kategori_Index";
+    Layout = "~/Views/Shared/_MainLoyout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/KATEGORI/YeniKategori/" class="btn btn-primary">YENİ KATEGORİ EKLE</a>
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>KATEGORI ID</th>
+                        <th>KATEGORI AD</th>
+                        <th>SİL</th>
+                        <th>GÜNCELLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.KATEGORIID</th>
+                            <td>@item.KATEGORIAD</td>
+                            <td><a href="/KATEGORI/SIL/@item.KATEGORIID" class="btn btn-danger ">SİL</a></td>
+                            <td><a href="/KATEGORI/KategoriGetir/@item.KATEGORIID" class="btn btn-success">GÜNCELLE</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

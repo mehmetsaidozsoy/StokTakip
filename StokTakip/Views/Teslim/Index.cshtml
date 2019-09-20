@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StokTakip.Models.Entity.TBLTESLIMAT>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLoyout.cshtml";
+}
+@if (TempData["mesaj"] != null)
+{
+
+    <h2>@TempData["mesaj"]</h2>
+    <hr />
+}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Teslimat Yap
+</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <table class="table table-hover">
+                <tr>
+                    <th>TESLİM ID</th>
+                    <th>ÜRÜN</th>
+                    <th>MÜŞTERİ</th>
+                    <th>ADET</th>
+                    <th>SİL</th>
+                    <th>GÜNCELLE</th>
+
+                </tr>
+                <tbody>
+                    @foreach (var tsl in Model)
+                    {
+                    <tr>
+                        <th>@tsl.TESLIMID</th>
+                        <th>@tsl.TBLURUNLER.URUNAD</th>
+                        <td>@tsl.TBLMUSTERILER.MUSTERIAD @tsl.TBLMUSTERILER.MUSTERISOYAD</td>
+                        <td>@tsl.ADET</td>
+                        <td><a href="/TESLIM/SIL/@tsl.TESLIMID" class="btn btn-danger ">SİL</a></td>
+                        <td><a href="/TESLIM/TeslimatGetir/@tsl.TESLIMID" class="btn btn-success">GÜNCELLE</a></td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Teslimat Ekranı</h2>
+
+            </div>
+            <form method="post" action="~/Teslim/YeniTeslim">
+                <div class="modal-body">
+                    <label>Müşteri</label>
+                    @Html.DropDownList("Musteri", null, new { @class = "form-control" })
+                    <br />
+                    <label>Ürün Markası</label>
+                    @Html.DropDownList("Urun", null, new { @class = "form-control" })
+                    <br />
+                    <label>Teslimat Adedi</label>
+                    <input type="number" id="Adet" name="Adet" class="form-control" />
+                    <br />
+                    <button class="btn btn-info">Verileri Kaydet </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

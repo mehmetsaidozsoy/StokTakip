@@ -1,0 +1,41 @@
+﻿@model StokTakip.Views.Teslim.ViewModel.UrunMusteriViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLoyout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Teslimat Yap
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Teslimat Ekranı</h2>
+            </div>
+            <form method="post" action="/UrunMusteri/YeniTeslim/">
+                <div class="modal-body">
+                    <label>Ürün Adı</label>
+                    @Html.DropDownListFor(m => m.UrunModel.URUNAD, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+                    <br />
+                    <label>Ürün Markası</label>
+                    @Html.DropDownListFor(m => m.UrunModel.MARKA, (List<SelectListItem>)ViewBag.dgr2, new { @class = "form-control" })
+                    <br />
+                    <label>Müşteri Adı</label>
+                    @Html.DropDownListFor(m => m.MusteriModel.MUSTERIAD, (List<SelectListItem>)ViewBag.dgr3, new { @class = "form-control" })
+                    <br />
+                    <label>Müşteri Soyadı</label>
+                    @Html.DropDownListFor(m => m.MusteriModel.MUSTERISOYAD, (List<SelectListItem>)ViewBag.dgr4, new { @class = "form-control" })
+                    <br />
+                    <label>Adet</label>
+                    @Html.TextBox("STOK", new { @class = "form-control" })
+                    <br />
+
+                    <button class="btn btn-info">Teslim İşlemini Yap </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+﻿@model StokTakip.Models.Entity.TBLTESLIMAT
+@{
+    ViewBag.Title = "TeslimatGetir";
+    Layout = "~/Views/Shared/_MainLoyout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Teslim", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.TESLIMID)
+        @Html.TextBoxFor(m => m.TESLIMID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.URUN)
+        @Html.DropDownList("Urun", null, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.MUSTERI)
+        @Html.DropDownList("Musteri", null, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.ADET)
+        @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+        <br />
+
+    </div>
+    <div>
+        <button type="submit" class="btn btn-warning">Teslimat Güncelle</button>
+    </div>
+}
+
